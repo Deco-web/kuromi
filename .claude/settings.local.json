@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(node --version; npx --version)",
+      "Bash(npx --yes http-server . -p 3000 --cors -o false)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\andre\\\\OneDrive\\\\Desktop\\\\kuromi\\\\assets\\\\img\\\\\" | Select-Object Name, @{N='KB';E={[math]::Round\\($_.Length/1KB,1\\)}} | Sort-Object KB -Descending)",
+      "Bash(npx --yes pngquant --quality=60-80 --ext .png --force assets/img/*.png)",
+      "Bash(node -e ' *)",
+      "Bash(npm init *)",
+      "Bash(npm install *)",
+      "Bash(awk '{print $5, $9}')",
+      "Bash(yarn --version)",
+      "Bash(yarn dev *)",
+      "Bash(yarn install *)",
+      "Bash(npx kill-port *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}
