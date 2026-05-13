@@ -2,6 +2,16 @@
    KUROMI — js/main.js
 ═══════════════════════════════════════════ */
 
+/* ──────────── SPLASH ──────────── */
+;(function () {
+    const splash = document.getElementById('splash');
+    const btn    = document.getElementById('splashBtn');
+    btn.addEventListener('click', () => {
+        splash.classList.add('hide');
+        setTimeout(() => splash.remove(), 650);
+    });
+}());
+
 /* ──────────── PARTÍCULAS — detalhes pretos da Kuromi ──────────── */
 ;(function () {
     const container = document.getElementById('particles');

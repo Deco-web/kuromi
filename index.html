@@ -11,6 +11,15 @@
 </head>
 <body>
 
+<!-- ══════════════════ SPLASH ══════════════════ -->
+<div id="splash">
+    <div class="splash-inner">
+        <img src="assets/img/kuromi-love.png" class="splash-img" alt="Kuromi">
+        <p class="splash-phrase">Queria um jeito de estar com você em todos os momentos, não importando a distância. Esse chaveiro é a chave para um pedacinho de mim que fiz só para nós. Dizem que quem ama quer dar o mundo, mas o mundo lá fora tem muita maldade para eu te oferecer algo assim. Por isso, preferi programar um mundo novo, feito do zero, só para você.</p>
+        <button class="splash-btn" id="splashBtn">entrar &nbsp; 💜</button>
+    </div>
+</div>
+
 <div id="particles"></div>
 
 <div id="viewport">
@@ -19,7 +28,7 @@
     <section id="home" class="sec active">
         <div class="home-inner">
 
-            <p class="eyebrow">✦ sanrio ✦</p>
+            <p class="eyebrow">✦ Deco ✦</p>
             <h1>Kuromi</h1>
             <p class="tagline">para você, Lelê 💜</p>
 
@@ -185,7 +194,6 @@
             </div>
         </a>
 
-        <p class="sec-end anim from-up">mais músicas em breve &nbsp; ♡</p>
 
     </section>
 
@@ -194,87 +202,69 @@
 
         <div class="sec-header anim from-up">
             <p class="sec-deco">♡ &nbsp; ♡ &nbsp; ♡</p>
-            <h2>Nossas Fotos</h2>
+            <h2>Fotos</h2>
             <p>momentos nossos</p>
         </div>
 
-        <!--
-            ════ COMO ADICIONAR FOTOS ════
-            1. Coloque os arquivos em:  assets/img/
-            2. Troque src="" pelo nome: src="assets/img/foto1.jpg"
-        -->
-
+        <!-- Dupla topo -->
         <div class="photos-grid anim from-up">
+            <div class="pf-wrap" style="--r:-4deg">
+                <div class="photo-slot">
+                    <img src="fotos/foto1.jpg" alt="nossa foto" loading="lazy">
+                </div>
+            </div>
+            <div class="pf-wrap" style="--r:3deg">
+                <div class="photo-slot">
+                    <img src="fotos/foto2.jpg" alt="nossa foto" loading="lazy">
+                </div>
+            </div>
+        </div>
+
+        <!-- Foto especial larga -->
+        <div class="pf-wrap anim from-up" style="--r:-1deg; margin-bottom:10px">
+            <div class="photo-slot wide">
+                <img src="fotos/lele.jpg" alt="Lelê" loading="lazy">
+            </div>
+        </div>
+
+        <!-- Grade de 4 -->
+        <div class="photos-grid anim from-up">
+            <div class="pf-wrap" style="--r:5deg">
+                <div class="photo-slot">
+                    <img src="fotos/foto3.jpg" alt="nossa foto" loading="lazy">
+                </div>
+            </div>
             <div class="pf-wrap" style="--r:-3deg">
                 <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
+                    <img src="fotos/foto4.jpg" alt="nossa foto" loading="lazy">
+                </div>
+            </div>
+            <div class="pf-wrap" style="--r:-6deg">
+                <div class="photo-slot">
+                    <img src="fotos/foto5.jpg" alt="nossa foto" loading="lazy">
                 </div>
             </div>
             <div class="pf-wrap" style="--r:4deg">
                 <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
+                    <img src="fotos/foto6.jpg" alt="nossa foto" loading="lazy">
                 </div>
             </div>
+        </div>
+
+        <!-- Dupla final -->
+        <div class="photos-grid anim from-up" style="margin-bottom:24px">
             <div class="pf-wrap" style="--r:2deg">
                 <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
+                    <img src="fotos/foto7.jpg" alt="nossa foto" loading="lazy">
                 </div>
             </div>
             <div class="pf-wrap" style="--r:-5deg">
                 <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
+                    <img src="fotos/foto8.jpg" alt="nossa foto" loading="lazy">
                 </div>
             </div>
         </div>
 
-        <div class="pf-wrap anim from-up" style="--r:1deg; margin-bottom:10px">
-            <div class="photo-slot wide">
-                <img src="" alt="foto especial">
-                <div class="slot-ph">
-                    <span class="si">🖼️</span>
-                    <span class="sl">foto especial</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="photos-grid anim from-up">
-            <div class="pf-wrap" style="--r:3deg">
-                <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
-                </div>
-            </div>
-            <div class="pf-wrap" style="--r:-4deg">
-                <div class="photo-slot">
-                    <img src="" alt="nossa foto">
-                    <div class="slot-ph">
-                        <span class="si">📸</span>
-                        <span class="sl">adicionar foto</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <p class="sec-end anim from-up">mais memórias em breve &nbsp; ♡</p>
 
     </section>
 
