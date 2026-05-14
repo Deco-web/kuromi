@@ -15,7 +15,7 @@
 <div id="splash">
     <div class="splash-inner">
         <img src="assets/img/kuromi-love.png" class="splash-img" alt="Kuromi">
-        <p class="splash-phrase">Queria um jeito de estar com você em todos os momentos, não importando a distância. Esse chaveiro é a chave para um pedacinho de mim que fiz só para nós. Dizem que quem ama quer dar o mundo, mas o mundo lá fora tem muita maldade para eu te oferecer algo assim. Por isso, preferi programar um mundo novo, feito do zero, só para você.</p>
+        <p class="splash-phrase">Queria um jeito de estar com você em todos os momentos, não importandopor a distância. Esse chaveiro é a chave para um pedacinho de mim que fiz só para nós. Dizem que quem ama quer dar o mundo, mas o mundo lá fora tem muita maldade para eu te oferecer algo assim. Por isso, preferi programar um mundo novo, feito do zero, só para você.</p>
         <button class="splash-btn" id="splashBtn">entrar &nbsp; 💜</button>
     </div>
 </div>
@@ -143,14 +143,12 @@
             <p>curadas com amor pra você</p>
         </div>
 
-        <!--
-            ════ COMO ADICIONAR PLAYLIST ════
-            Substitua o href="#" pelo link da sua playlist
-            Exemplo: href="https://open.spotify.com/playlist/..."
-        -->
-
-        <a class="music-card anim from-up" href="#" target="_blank" rel="noopener noreferrer"
-           style="--cfrom:#2d0061;--cto:#7c0b38">
+        <div class="music-card anim from-up"
+             data-cover="assets/img/kuromi-love.png"
+             data-title="Músicas que te dedico"
+             data-sub="só pra você 🖤"
+             data-ded=""
+             style="--cfrom:#2d0061;--cto:#7c0b38">
             <div class="mc-cover">
                 <img src="assets/img/kuromi-love.png" class="mc-art" alt="">
             </div>
@@ -159,42 +157,58 @@
                 <p class="mc-sub">só pra você 🖤</p>
             </div>
             <div class="mc-foot">
-                <span class="mc-btn">♪ &nbsp; Ouvir agora</span>
+                <span class="mc-btn">♪ &nbsp; Ver músicas</span>
                 <span class="mc-note">✦</span>
             </div>
-        </a>
+        </div>
 
-        <a class="music-card anim from-up" href="#" target="_blank" rel="noopener noreferrer"
-           style="--cfrom:#1a0050;--cto:#6b0057">
+        <div class="music-card anim from-up"
+             data-cover="assets/img/kuromi-hearts.png"
+             data-title="Suas favoritas"
+             data-sub="as que você ama ♡"
+             data-ded=""
+             style="--cfrom:#1a0050;--cto:#6b0057">
             <div class="mc-cover">
                 <img src="assets/img/kuromi-hearts.png" class="mc-art" alt="">
-            </div>
-            <div class="mc-body">
-                <p class="mc-title">A playlist de nós</p>
-                <p class="mc-sub">nossas músicas 💜</p>
-            </div>
-            <div class="mc-foot">
-                <span class="mc-btn">♪ &nbsp; Ouvir agora</span>
-                <span class="mc-note">✦</span>
-            </div>
-        </a>
-
-        <a class="music-card anim from-up" href="#" target="_blank" rel="noopener noreferrer"
-           style="--cfrom:#0d0040;--cto:#5b0080">
-            <div class="mc-cover">
-                <img src="assets/img/kuromi-hello.png" class="mc-art" alt="">
             </div>
             <div class="mc-body">
                 <p class="mc-title">Suas favoritas</p>
                 <p class="mc-sub">as que você ama ♡</p>
             </div>
             <div class="mc-foot">
-                <span class="mc-btn">♪ &nbsp; Ouvir agora</span>
+                <span class="mc-btn">♪ &nbsp; Ver músicas</span>
                 <span class="mc-note">✦</span>
             </div>
-        </a>
+        </div>
 
+        <div class="music-card anim from-up"
+             data-cover="assets/img/kuromi-hello.png"
+             data-title="Áudios do Dedeco para a Lelê"
+             data-sub="só pra você 💜"
+             data-ded=""
+             style="--cfrom:#0d0040;--cto:#5b0080">
+            <div class="mc-cover">
+                <img src="assets/img/kuromi-hello.png" class="mc-art" alt="">
+            </div>
+            <div class="mc-body">
+                <p class="mc-title">Áudios do Dedeco para a Lelê</p>
+                <p class="mc-sub">só pra você 💜</p>
+            </div>
+            <div class="mc-foot">
+                <span class="mc-btn">🎙 &nbsp; Ouvir</span>
+                <span class="mc-note">✦</span>
+            </div>
+        </div>
 
+    </section>
+
+    <!-- ══════════════════ DEDICADAS (sub-página) ══════════════════ -->
+    <section id="dedicadas" class="sec sub-page">
+        <div class="subpage-hd">
+            <button class="back-btn" data-target="musicas">‹ Músicas</button>
+            <p class="subpage-title">Músicas que te dedico</p>
+        </div>
+        <div id="songs-list" class="songs-list"></div>
     </section>
 
     <!-- ══════════════════ FOTOS ══════════════════ -->
@@ -311,6 +325,46 @@
         <span class="nl">Carta</span>
     </button>
 </nav>
+
+<!-- ══════════════════ MODAL MÚSICA ══════════════════ -->
+<div id="song-modal" class="smodal" aria-hidden="true">
+    <div class="smodal-bg"></div>
+    <div class="smodal-card">
+        <button class="smodal-close" aria-label="Fechar">✕</button>
+        <audio id="smodal-audio" preload="none"></audio>
+
+        <div class="smodal-cover">
+            <img id="smodal-img" src="" alt="">
+            <div class="smodal-play-btn">
+                <span class="smodal-play-icon"></span>
+            </div>
+        </div>
+
+        <div class="smodal-info">
+            <p class="smodal-title" id="smodal-title"></p>
+            <p class="smodal-artist" id="smodal-artist"></p>
+        </div>
+
+        <div class="smodal-player">
+            <div id="smodal-progress-wrap" class="smodal-progress-wrap">
+                <div class="smodal-progress-bar">
+                    <div class="smodal-progress-fill" id="smodal-progress-fill"></div>
+                </div>
+            </div>
+            <div class="smodal-times">
+                <span id="smodal-time-cur">0:00</span>
+                <span id="smodal-time-tot">0:00</span>
+            </div>
+        </div>
+
+        <div class="smodal-tabs">
+            <button class="smodal-tab active" data-tab="ded">💜 dedicatória</button>
+        </div>
+        <div class="smodal-ded">
+            <p id="smodal-ded-text"></p>
+        </div>
+    </div>
+</div>
 
 <script src="js/main.js"></script>
 </body>

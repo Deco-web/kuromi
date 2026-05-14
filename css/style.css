@@ -157,6 +157,96 @@ body {
     transform: translateX(-50%) translateY(0);
 }
 
+/* Sub-páginas deslizam da direita */
+.sec.sub-page {
+    transform: translateX(calc(-50% + 100vw));
+    opacity: 0;
+}
+.sec.sub-page.active {
+    transform: translateX(-50%);
+    opacity: 1;
+}
+
+/* Header da sub-página */
+.subpage-hd {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 0 18px;
+    border-bottom: 1px solid rgba(232,213,255,.12);
+    margin-bottom: 20px;
+    position: sticky;
+    top: 0;
+    background: linear-gradient(155deg, #9878ae 0%, #8e78b4 50%, #8a6ca8 100%);
+    z-index: 5;
+}
+.back-btn {
+    background: rgba(255,255,255,.12);
+    border: none;
+    color: #e8d5ff;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    padding: 7px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    white-space: nowrap;
+}
+.subpage-title {
+    font-size: 15px;
+    font-weight: 900;
+    color: #e8d5ff;
+    flex: 1;
+    text-align: center;
+    padding-right: 70px;
+}
+
+/* Lista e cards de músicas individuais */
+.songs-list { display: flex; flex-direction: column; gap: 10px; padding-bottom: 32px; }
+.song-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(232,213,255,.15);
+    border-radius: 16px;
+    padding: 10px 14px 10px 10px;
+    cursor: pointer;
+    transition: background .15s ease, transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.song-card:active { background: rgba(255,255,255,.18); transform: scale(.98); }
+.sc-cover {
+    position: relative;
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #2a0055;
+}
+.sc-cover img { width: 100%; height: 100%; object-fit: cover; }
+.sc-play {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0,0,0,.3);
+}
+.sc-play span {
+    display: block; width: 0; height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 11px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 2px;
+}
+.sc-info { flex: 1; min-width: 0; }
+.sc-title {
+    font-size: 14px; font-weight: 800; color: #e8d5ff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.sc-artist { font-size: 11px; font-weight: 600; color: rgba(232,213,255,.55); margin-top: 2px; }
+.sc-arrow { font-size: 22px; color: rgba(232,213,255,.35); line-height: 1; }
+
 /* ──────────── ANIMAÇÃO DE ENTRADA ──────────── */
 
 .anim {
@@ -487,13 +577,12 @@ h1 {
 .music-card {
     display: flex;
     flex-direction: column;
-    background: var(--card);
-    border: 1px solid var(--card-b);
+    background: rgba(255, 255, 255, .10);
+    border: 1px solid rgba(232, 213, 255, .15);
     border-radius: 22px;
     overflow: hidden;
-    text-decoration: none;
-    color: inherit;
     margin-bottom: 16px;
+    cursor: pointer;
     transition: transform .14s ease, box-shadow .14s ease;
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
@@ -504,7 +593,6 @@ h1 {
     transform: scale(.97);
     box-shadow: 0 4px 24px rgba(147, 51, 234, .25);
 }
-
 .mc-cover {
     height: 152px;
     background: linear-gradient(135deg, var(--cfrom, #2d0061), var(--cto, #7c0b38));
@@ -518,8 +606,7 @@ h1 {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 62% 38%,
-        rgba(255, 255, 255, .09), transparent 68%);
+    background: radial-gradient(circle at 62% 38%, rgba(255,255,255,.09), transparent 68%);
 }
 .mc-art {
     height: 128px;
@@ -527,23 +614,20 @@ h1 {
     object-fit: contain;
     position: relative;
     z-index: 1;
-    filter: drop-shadow(0 4px 20px rgba(0, 0, 0, .45));
+    filter: drop-shadow(0 4px 20px rgba(0,0,0,.45));
 }
-
 .mc-body { padding: 14px 16px 2px; }
 .mc-title {
     font-size: 16px;
     font-weight: 900;
-    color: var(--txt);
+    color: #e8d5ff;
     margin-bottom: 3px;
 }
 .mc-sub {
     font-size: 12px;
     font-weight: 600;
-    color: var(--dim);
-    opacity: .8;
+    color: rgba(232,213,255,.6);
 }
-
 .mc-foot {
     display: flex;
     align-items: center;
@@ -564,7 +648,197 @@ h1 {
 }
 .mc-note {
     font-size: 18px;
-    color: rgba(30, 0, 60, .2);
+    color: rgba(232,213,255,.25);
+}
+
+/* ══════════════════════════════════════════
+   MODAL MÚSICA
+══════════════════════════════════════════ */
+.smodal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: flex-end;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .25s ease;
+}
+.smodal.open {
+    pointer-events: auto;
+    opacity: 1;
+}
+.smodal-bg {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 0, 30, .72);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+.smodal-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 430px;
+    max-height: 88vh;
+    margin: 0 auto;
+    background: #1a0040;
+    border-radius: 24px 24px 0 0;
+    padding: 20px 20px calc(28px + env(safe-area-inset-bottom));
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    transform: translateY(40px);
+    transition: transform .3s cubic-bezier(.22,.61,.36,1);
+}
+.smodal-card::-webkit-scrollbar { display: none; }
+.smodal.open .smodal-card {
+    transform: translateY(0);
+}
+.smodal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: rgba(255,255,255,.12);
+    border: none;
+    color: #e8d5ff;
+    font-size: 15px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+.smodal-cover {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    margin: 8px auto 16px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 28px rgba(0,0,0,.55);
+}
+.smodal-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.smodal-play-btn {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,.38);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background .15s;
+}
+.smodal-play-btn:active { background: rgba(0,0,0,.55); }
+.smodal-play-icon {
+    display: block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 14px 0 14px 24px;
+    border-color: transparent transparent transparent #fff;
+    margin-left: 4px;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.6));
+    transition: opacity .15s;
+}
+/* Estado: tocando — mostra ícone de pause (duas barras) */
+.smodal-play-btn.playing .smodal-play-icon {
+    border: none;
+    width: 20px;
+    height: 22px;
+    margin-left: 0;
+    background: linear-gradient(to right, #fff 30%, transparent 30%, transparent 70%, #fff 70%);
+    filter: drop-shadow(0 0 8px rgba(255,255,255,.6));
+}
+
+/* Player: barra de progresso e tempo */
+.smodal-player { margin: 0 0 16px; }
+.smodal-progress-wrap {
+    height: 28px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.smodal-progress-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(232,213,255,.2);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.smodal-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #c084fc, #f472b6);
+    border-radius: 4px;
+    transition: width .25s linear;
+}
+.smodal-times {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    font-weight: 700;
+    color: rgba(232,213,255,.45);
+    margin-top: 4px;
+}
+.smodal-info {
+    text-align: center;
+    margin-bottom: 16px;
+    padding: 0 36px;
+}
+.smodal-title {
+    font-size: 16px;
+    font-weight: 900;
+    color: #e8d5ff;
+    margin-bottom: 4px;
+    line-height: 1.3;
+    word-break: break-word;
+}
+.smodal-artist {
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(232,213,255,.55);
+}
+.smodal-tabs {
+    display: flex;
+    border-bottom: 1px solid rgba(232,213,255,.15);
+    margin-bottom: 14px;
+}
+.smodal-tab {
+    background: none;
+    border: none;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    color: rgba(232,213,255,.5);
+    padding: 8px 0 10px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    -webkit-tap-highlight-color: transparent;
+}
+.smodal-tab.active {
+    color: #e8d5ff;
+    border-bottom-color: #c084fc;
+}
+.smodal-ded { min-height: 56px; }
+#smodal-ded-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(232,213,255,.8);
+    line-height: 1.8;
+    text-align: center;
+    font-style: italic;
 }
 
 .sec-end {
